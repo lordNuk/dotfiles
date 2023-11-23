@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "enter username: " username
-echo "enter password: " password
+read -p "enter username: " username
+read -p "enter password: " password
 
 echo "installing required packages..."
 echo $password | sudo -S pacman --noconfirm -S neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman
