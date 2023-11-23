@@ -1,10 +1,10 @@
 #!/bin/bash
 
 read -p "enter username: " username
-read -p "enter password: " password
+read -p -s "enter password: " password
 
 echo "installing required packages..."
-echo $password | sudo -S pacman --noconfirm -S neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman
+echo $password | sudo -S pacman --noconfirm -S thunar neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman
 
 echo "adding files: .bashrc, .profile, .dmenurc"
 echo $password | sudo -S rm /home/$username/.bashrc /home/$username/.profile /home/$username/.fehbg /home/$username/.dmenurc /home/$username/.tmux.conf
@@ -43,7 +43,7 @@ echo "- /home/$username/dotfiles/dunst /home/$username/.config/"
 
 echo "installing yay"
 cd /home/$username
-echo $password | sudo -S pacman -S --noconfirm --needed git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+echo $password | sudo -S pacman -S --noconfirm --needed base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 cd ..
 echo "installing required aur packages.. "
 yay -S --noconfirm mercury-browser
