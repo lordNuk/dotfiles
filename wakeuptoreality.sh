@@ -4,7 +4,7 @@ read -p "enter username: " username
 read -p "enter password: " -s password
 
 echo "installing required packages..."
-echo $password | sudo -S pacman --noconfirm -S go thunar neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman ugrep
+echo $password | sudo -S pacman --noconfirm -S go thunar neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman alacritty ugrep cat exa expac starship
 
 echo "adding files: .bashrc, .bash_profile, .dmenurc"
 echo $password | sudo -S rm /home/$username/.bashrc /home/$username/.bash_profile /home/$username/.fehbg /home/$username/.dmenurc /home/$username/.tmux.conf
