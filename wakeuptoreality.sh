@@ -4,12 +4,12 @@ read -p "enter username: " username
 read -p "enter password: " -s password
 
 echo "installing required packages..."
-echo $password | sudo -S pacman --noconfirm -S thunar neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman ugrep
+echo $password | sudo -S pacman --noconfirm -S go thunar neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman ugrep
 
-echo "adding files: .bashrc, .profile, .dmenurc"
-echo $password | sudo -S rm /home/$username/.bashrc /home/$username/.profile /home/$username/.fehbg /home/$username/.dmenurc /home/$username/.tmux.conf
+echo "adding files: .bashrc, .bash_profile, .dmenurc"
+echo $password | sudo -S rm /home/$username/.bashrc /home/$username/.bash_profile /home/$username/.fehbg /home/$username/.dmenurc /home/$username/.tmux.conf
 ln -s /home/$username/dotfiles/.bashrc /home/$username/
-ln -s /home/$username/dotfiles/.profile /home/$username/
+ln -s /home/$username/dotfiles/.bash_profile /home/$username/
 ln -s /home/$username/dotfiles/.fehbg /home/$username/
 ln -s /home/$username/dotfiles/.dmenurc /home/$username/
 ln -s /home/$username/dotfiles/.tmux.conf /home/$username/
@@ -50,4 +50,11 @@ yay -S --noconfirm mercury-browser
 
 echo ""
 echo "hello world!" | lolcat
+echo "what happened? Nothing seems to have changed?" | lolcat
+echo "oh! noooo.. there must be some bugs or errors in my script." | lolcat
+echo "..." | lolcat
+echo "....." | lolcat
+echo "......." | lolcat
+echo "nah nothing's wrong with the script... just reboot or logout and login!" | lolcat
+cowsay "bye bye" | lolcat
 echo ""

@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-fill '/usr/share/wallpapers/garuda-wallpapers/myWall2.jpg'
+feh --no-fehbg --bg-fill ~/Pictures/wallpapers/myWall2.jpg
