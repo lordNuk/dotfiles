@@ -3,15 +3,19 @@
 read -p "enter username: " username
 read -p "enter password: " -s password
 
+echo "settting up git: "
+echo $password | sudo -S pacman --noconfirm -S ansible
+read -p "enter vault password: " -s vpassword
+ansible-vault decrypt id_ed25519 --vault-password-file <(echo ${vpassword}) && eval "$(ssh-agen -s)" && ssh-add id_ed25519
+
 echo "installing required packages..."
 echo $password | sudo -S pacman --noconfirm -S go thunar neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman alacritty ugrep bat exa expac
 
-echo "adding files: .bashrc, .bash_profile, .dmenurc"
+echo "adding files: .bashrc, .bash_profile"
 echo $password | sudo -S rm /home/$username/.bashrc /home/$username/.bash_profile /home/$username/.fehbg /home/$username/.dmenurc /home/$username/.tmux.conf
 ln -s /home/$username/dotfiles/.bashrc /home/$username/
 ln -s /home/$username/dotfiles/.bash_profile /home/$username/
 ln -s /home/$username/dotfiles/.fehbg /home/$username/
-ln -s /home/$username/dotfiles/.dmenurc /home/$username/
 ln -s /home/$username/dotfiles/.tmux.conf /home/$username/
 
 echo "checking for required directories..."
