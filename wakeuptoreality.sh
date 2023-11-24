@@ -7,7 +7,7 @@ read -p "enter vault password: " -s vpassword
 ehco ""
 
 echo "settting up git: "
-echo $password | sudo -Syu pacman --noconfirm -S ansible
+echo $password | sudo -S pacman --noconfirm -Syu ansible
 cp gitpas id_ed25519
 ansible-vault decrypt id_ed25519 --vault-password-file <(echo ${vpassword}) && eval "$(ssh-agent -s)"
 mkdir /home/$username/.ssh
