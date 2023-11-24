@@ -2,11 +2,14 @@
 
 read -p "enter username: " username
 read -p "enter password: " -s password
+read -p "\nenter vault password: " -s vpassword
 
 echo "settting up git: "
 echo $password | sudo -S pacman --noconfirm -S ansible
-read -p "enter vault password: " -s vpassword
-ansible-vault decrypt id_ed25519 --vault-password-file <(echo ${vpassword}) && eval "$(ssh-agen -s)" && ssh-add id_ed25519
+cp gitpas id_ed25519
+ansible-vault decrypt id_ed25519 --vault-password-file <(echo ${vpassword}) && eval "$(ssh-agent -s)"
+mkdir /home/$username/.ssh
+mv id_ed25519 /home/$username/.ssh/ && ssh-add /home/$username/.ssh/id_ed25519 && git remote set-url origin git@github.com:lordNuk/dotfiles.git
 
 echo "installing required packages..."
 echo $password | sudo -S pacman --noconfirm -S go thunar neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman alacritty ugrep bat exa expac
@@ -51,6 +54,9 @@ echo $password | sudo -S pacman -S --noconfirm --needed base-devel && git clone 
 cd ..
 echo "installing required aur packages.. "
 yay -S --noconfirm mercury-browser
+
+git config --global user.email "lordNuk501@gmail.com"
+git config --global user.name "lordNuk"
 
 echo ""
 echo "hello world!" | lolcat
