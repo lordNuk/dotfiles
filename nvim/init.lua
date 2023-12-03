@@ -123,9 +123,9 @@ require('lazy').setup({
 -- See `:help vim.o`
 vim.o.hlsearch = false
 -- Enable break indent
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.o.breakindent = true
 vim.o.smartindent = true
@@ -136,7 +136,7 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+-- vim.wo.signcolumn = 'yes'
 -- Decrease update time
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
@@ -146,7 +146,7 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 vim.o.incsearch = true
-vim.o.scrolloff = 8
+vim.o.scrolloff = 14
 
 -- [[ Basic Keymaps ]]
 -- See `:help vim.keymap.set()`
@@ -175,6 +175,8 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>sh", ":.!")
+-- cheatsheet
+vim.keymap.set({"n", "v"}, "<C-i>", ":.!cht.sh -qs<CR>")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -205,7 +207,7 @@ vim.o.foldmethod = 'indent'
 vim.o.foldenable = false
 vim.o.foldlevel = 99
 
--- [[ Configure Telescope ]]
+-- [[ Configure theme ]]
 require('solarized-osaka').setup({
   disable_background = true
 })

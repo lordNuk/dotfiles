@@ -1,16 +1,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Advanced command-not-found hook
-# source /usr/share/doc/find-the-command/ftc.bash
-
 ## Useful aliases
 
 # Useful aliases by me
 alias shtdn='shutdown now'
 alias uu='sudo pacman -Syu'
 alias air='~/go/bin/./air'
-
 
 # Replace ls with exa
 alias ls='ls' # preferred listing
@@ -21,7 +17,6 @@ alias l.='exa -ald --color=always --group-directories-first --icons .*' # show o
 
 # Replace some more things with better alternatives
 alias cat='bat --style header --style snip --style changes --style header'
-[ ! -x /usr/bin/yay ] && [ -x /usr/bin/paru ] && alias yay='paru'
 
 # Common use
 alias grubup="sudo update-grub"
@@ -32,11 +27,6 @@ alias wget='wget -c '
 alias rmpkg="sudo pacman -Rdd"
 alias psmem='ps auxf | sort -nr -k 4'
 alias psmem10='ps auxf | sort -nr -k 4 | head -10'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 #alias grep='ugrep --color=auto'
@@ -46,7 +36,6 @@ alias hw='hwinfo --short'                          # Hardware Info
 alias big="expac -H M '%m\t%n' | sort -h | nl"     # Sort installed packages according to size in MB (expac must be installed)
 alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git packages
 alias ip='ip -color'
-alias res1='xrandr --output eDP1 --mode 1920x1200 --rate 90'
 
 # Get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -62,4 +51,6 @@ alias jctl="journalctl -p 3 -xb"
 
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-# fastfetch -l garuda
+
+set -o vi
+bind '"\C-f":"tmux-sessionizer\n"'

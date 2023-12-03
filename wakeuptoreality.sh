@@ -14,14 +14,13 @@ mkdir /home/$username/.ssh
 mv id_ed25519 /home/$username/.ssh/ && ssh-add /home/$username/.ssh/id_ed25519 && git remote set-url origin git@github.com:lordNuk/dotfiles.git
 
 echo "installing required packages..."
-echo $password | sudo -S pacman --noconfirm -S go thunar neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman alacritty ugrep bat exa expac
+echo $password | sudo -S pacman --noconfirm -S ttf-liberation lxappearance xclip xsel zathura redshift go thunar neovim tmux lolcat cowsay ttf-liberation-mono-nerd dunst feh xorg-xrandr network-manager-applet blueman alacritty ugrep bat exa expac light
 
 echo "adding files: .bashrc, .bash_profile"
 echo $password | sudo -S rm /home/$username/.bashrc /home/$username/.bash_profile /home/$username/.fehbg /home/$username/.dmenurc /home/$username/.tmux.conf
 ln -s /home/$username/dotfiles/.bashrc /home/$username/
 ln -s /home/$username/dotfiles/.bash_profile /home/$username/
 ln -s /home/$username/dotfiles/.fehbg /home/$username/
-ln -s /home/$username/dotfiles/.tmux.conf /home/$username/
 
 echo "checking for required directories..."
 if [ ! -d "/home/$username/Pictures" ]; then
@@ -49,6 +48,8 @@ ln -s /home/$username/dotfiles/nvim /home/$username/.config/
 echo "- /home/$username/dotfiles/nvim /home/$username/.config/"
 ln -s /home/$username/dotfiles/dunst /home/$username/.config/
 echo "- /home/$username/dotfiles/dunst /home/$username/.config/"
+ln -s /home/$username/dotfiles/tmux /home/$username/
+echo "- /home/$username/dotfiles/tmux /home/$username/"
 
 echo "installing yay"
 cd /home/$username
@@ -59,6 +60,12 @@ yay -S --noconfirm mercury-browser
 
 git config --global user.email "lordNuk501@gmail.com"
 git config --global user.name "lordNuk"
+
+echo "setting dark theme" | lolcat
+echo "GTK_THEME=Adwaita:dark" >> environment
+echo $password | sudo -S rm /etc/environment
+echo $password | sudo -S mv environment /etc/
+
 
 echo ""
 echo "hello world!" | lolcat
