@@ -20,9 +20,9 @@ set $lockScreenWallpaper ~/Pictures/wallpapers/myWall8.png
 
 ### Applications: ###
 
-set $preferredTerminalEmulator /usr/bin/alacritty
+set $preferredTerminalEmulator /usr/bin/kitty
 set $preferredBrowser /usr/bin/firefox
-set $preferredFileManager /usr/bin/thunar
+set $preferredFileManager /usr/bin/nautilus
 set $preferredMailClient /usr/bin/geary
 set $preferredTextEditor /usr/bin/geany
 set $preferredScreenCaptureTool /usr/bin/flameshot gui
@@ -57,7 +57,7 @@ font pango:LiberationMono 10
 floating_modifier $super
 
 #autostart
-exec --no-startup-id feh --no-fehbg --bg-fill ~/Pictures/wallpapers/myWall7.jpg &
+exec --no-startup-id feh --no-fehbg --bg-fill ~/Pictures/wallpapers/myWall2.jpg &
 exec --no-startup-id xsettingsd &
 #exec --no-startup-id pasystray
 # exec --no-startup-id conky
@@ -82,7 +82,7 @@ exec_always --no-startup-id numlockx on
 bindsym $super+b bar mode toggle
 
 # start dmenu (a program launcher)
-bindsym $super+d exec --no-startup-id "dmenu_run -i -b -fn 'Noto Sans:size=15' -nb '#222D31' -nf '#F9FAF9' -sf '#F9FAF9' -sb '#16A085'"
+bindsym $super+d exec --no-startup-id "dmenu_run -i -b -fn 'Hurmit Nerd Font Mono:size=12' -nb '#222D31' -nf '#F9FAF9' -sf '#F9FAF9' -sb '#16A085'"
 
 # screen resolution
 bindsym $super+x exec --no-startup-id ~/dotfiles/scripts/setscreen.sh
@@ -115,8 +115,8 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl stop
 
 # screen resolution control
-bindsym $super+z exec xrandr -s 1920x1200
-bindsym $super+Shift+z exec xrandr -s 3200x2000
+# bindsym $super+z exec xrandr -s 1920x1200
+# bindsym $super+Shift+z exec xrandr -s 3200x2000
 
 # Print screen
 
@@ -220,7 +220,7 @@ mode "resize" {
 }
 bindsym $super+r mode "resize"
 
-# change borders
+# change orders
 # bindsym $super+u border none
 # bindsym $super+y border pixel 1
 # bindsym $super+n border normal
@@ -250,43 +250,48 @@ bar {
 }
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="calamares"] floating enable border normal
-for_window [class="Clipgrab"] floating enable
-for_window [title="File Transfer*"] floating enable
-for_window [class="bauh"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
-for_window [class="Lightdm-settings"] floating enable
-for_window [class="Lxappearance"] floating enable border normal
-for_window [class="Garuda Settings Manager"] floating enable border normal
-for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="azote"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
-for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
-for_window [class="Pamac-manager"] floating enable
-for_window [class="Pamac-updater"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="Qtconfig-qt4"] floating enable border normal
-for_window [class="qt5ct"] floating enable sticky enable border normal
-#for_window [title="sudo"] floating enable border normal
-for_window [class="Simple-scan"] floating enable border normal
-for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
-for_window [class="Timeshift-gtk"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="Xfburn"] floating enable
-for_window [class="keepassxc"] floating enable
-for_window [class="garuda-welcome"] floating enable
+# for_window [title="alsamixer"] floating enable border pixel 1
+# for_window [class="calamares"] floating enable border normal
+# for_window [class="Clipgrab"] floating enable
+# for_window [title="File Transfer*"] floating enable
+# for_window [class="bauh"] floating enable
+# for_window [class="Galculator"] floating enable border pixel 1
+# for_window [class="GParted"] floating enable border normal
+# for_window [title="i3_help"] floating enable sticky enable border normal
+# for_window [class="Lightdm-settings"] floating enable
+# for_window [class="Lxappearance"] floating enable border normal
+# for_window [class="Garuda Settings Manager"] floating enable border normal
+# for_window [title="MuseScore: Play Panel"] floating enable
+# for_window [class="azote"] floating enable sticky enable border normal
+# for_window [class="Oblogout"] fullscreen enable
+# for_window [class="octopi"] floating enable
+# for_window [title="About Pale Moon"] floating enable
+# for_window [class="Pamac-manager"] floating enable
+# for_window [class="Pamac-updater"] floating enable
+# for_window [class="Pavucontrol"] floating enable
+# for_window [class="Qtconfig-qt4"] floating enable border normal
+# for_window [class="qt5ct"] floating enable sticky enable border normal
+# ffor_window [title="sudo"] floating enable border normal
+# for_window [class="Simple-scan"] floating enable border normal
+# for_window [class="(?i)System-config-printer.py"] floating enable border normal
+# for_window [class="Skype"] floating enable border normal
+# for_window [class="Timeshift-gtk"] floating enable border normal
+# for_window [class="(?i)virtualbox"] floating enable border normal
+# for_window [class="Xfburn"] floating enable
+# for_window [class="keepassxc"] floating enable
+# for_window [class="garuda-welcome"] floating enable
 
 # window rules, you can find the window class using xprop
-for_window [class=".*"] border pixel 4
-assign [class=URxvt] 1
-for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol|upgrade2ultimate.sh] floating enable
-for_window [class=URxvt|firedragon|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
-for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
+# for_window [class=".*"] border pixel 0
+# assign [class=URxvt] 1
+# for_window [class=Viewnior|feh|Audacious|File-roller|Lxappearance|Lxtask|Pavucontrol|upgrade2ultimate.sh] floating enable
+# for_window [class=URxvt|firedragon|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn|Gimp*|Inkscape|Vlc|Lxappearance|Audacity] focus
+# for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
+
+for_window [class="^.*"] border pixel 1
+                          # class                 border  backgr. text    indicator child_border
+for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
+
 
 # colour of border, background, text, indicator, and child_border
 client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
@@ -303,8 +308,8 @@ client.background           #2f343f
 #############################
 
 # Set inner/outer gaps
-gaps inner 0
-gaps outer -2
+# gaps inner 0
+# gaps outer -2
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
@@ -312,48 +317,49 @@ gaps outer -2
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+# smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+# smart_borders on
+hide_edge_borders vertical
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $super+Shift+g mode "$mode_gaps"
+# set $mode_gaps Gaps: (o) outer, (i) inner
+# set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+# set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+# bindsym $super+Shift+g mode "$mode_gaps"
 
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
+#mode "$mode_gaps" {
+#        bindsym o      mode "$mode_gaps_outer"
+#        bindsym i      mode "$mode_gaps_inner"
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#}
+#mode "$mode_gaps_inner" {
+#        bindsym plus  gaps inner current plus 5
+#        bindsym minus gaps inner current minus 5
+#        bindsym 0     gaps inner current set 0
 
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
+#        bindsym Shift+plus  gaps inner all plus 5
+#        bindsym Shift+minus gaps inner all minus 5
+#        bindsym Shift+0     gaps inner all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#}
+#mode "$mode_gaps_outer" {
+#        bindsym plus  gaps outer current plus 5
+#        bindsym minus gaps outer current minus 5
+#        bindsym 0     gaps outer current set 0
 
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
+#        bindsym Shift+plus  gaps outer all plus 5
+#        bindsym Shift+minus gaps outer all minus 5
+#        bindsym Shift+0     gaps outer all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
+#        bindsym Return mode "default"
+#        bindsym Escape mode "default"
+#}
 
 # redshift for bluelight filter
 bindsym $super+n exec redshift -P -O 3000  && $refresh_i3status
