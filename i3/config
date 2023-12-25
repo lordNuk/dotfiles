@@ -31,10 +31,10 @@ set $preferredScreenCaptureTool /usr/bin/flameshot gui
 ### Commonly Used Application Keybinds: ###
 ###########################################
 
-bindsym $super+F1 exec $preferredBrowser;focus
-bindsym $super+F2 exec $preferredMailClient;focus
-bindsym $super+F3 exec $preferredFileManager;focus
-bindsym $super+F4 exec $preferredTextEditor;focus
+# bindsym $super+F1 exec $preferredBrowser;focus
+# bindsym $super+F2 exec $preferredMailClient;focus
+# bindsym $super+F3 exec $preferredFileManager;focus
+# bindsym $super+F4 exec $preferredTextEditor;focus
 
 ### Screen Capturing & Print Screen: ###
 
@@ -51,13 +51,14 @@ bindsym $super+Return exec $preferredTerminalEmulator
 bindsym $super+w exec blueman-manager
 
 # set font
-font pango:LiberationMono 10
+font pango:Hack Nerd Font 10
 
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
 #autostart
 exec --no-startup-id feh --no-fehbg --bg-fill ~/Pictures/wallpapers/myWall2.jpg &
+exec --no-startup-id ~/dotfiles/scripts/setresolution.sh &
 exec --no-startup-id xsettingsd &
 #exec --no-startup-id pasystray
 # exec --no-startup-id conky
@@ -82,7 +83,7 @@ exec_always --no-startup-id numlockx on
 bindsym $super+b bar mode toggle
 
 # start dmenu (a program launcher)
-bindsym $super+d exec --no-startup-id "dmenu_run -i -b -fn 'Hurmit Nerd Font Mono:size=12' -nb '#222D31' -nf '#F9FAF9' -sf '#F9FAF9' -sb '#16A085'"
+bindsym $super+d exec --no-startup-id "dmenu_run -i -b -fn 'JetBrains Mono:style=Bold:size=12' -nb '#222D31' -nf '#F9FAF9' -sf '#F9FAF9' -sb '#16A085'"
 
 # screen resolution
 bindsym $super+x exec --no-startup-id ~/dotfiles/scripts/setscreen.sh

@@ -173,7 +173,7 @@
     sticky_history = yes
 
     # Maximum amount of notifications kept in history
-    history_length = 20
+    history_length = 3
 
     ### Misc/Advanced ###
     # dmenu path.
@@ -274,14 +274,14 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#0C0C14"
     foreground = "#CEDBE5"
-    timeout = 10
+    timeout = 2
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
     background = "#425164"
     foreground = "#CEDBE5"
-    timeout = 10
+    timeout = 2
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
 
@@ -289,7 +289,7 @@
     background = "#643535"
     foreground = "#CEDBE5"
     frame_color = "#E55C50"
-    timeout = 0
+    timeout = 2
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon
 

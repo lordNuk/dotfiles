@@ -11,12 +11,12 @@ alias air='~/go/bin/./air'
 # Replace ls with exa
 alias ls='ls' # preferred listing
 alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first --icons'  # long format
+alias ll='exa -al --color=always --group-directories-first --icons'  # long format
 alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
 alias l.='exa -ald --color=always --group-directories-first --icons .*' # show only dotfiles
 
 # Replace some more things with better alternatives
-alias cat='bat --style header --style snip --style changes --style header'
+# alias cat='bat --style header --style snip --style changes --style header'
 
 # Common use
 alias grubup="sudo update-grub"
@@ -48,6 +48,9 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 # Get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
+
+alias shtdn="sudo shutdown now"
+alias rbt="sudo reboot"
 
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
