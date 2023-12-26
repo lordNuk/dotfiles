@@ -1063,8 +1063,13 @@ manage(Window w, XWindowAttributes *wa)
 	grabbuttons(c, 0);
 	if (!c->isfloating)
 		c->isfloating = c->oldstate = trans != None || c->isfixed;
-	if (c->isfloating)
-		XRaiseWindow(dpy, c->win);
+	if (c->isfloating) {
+        XRaiseWindow(dpy, c->win);
+        c->x = selmon->mw / 4;
+        c->y = selmon->mh / 4;
+        c->w = selmon->mw / 2;
+        c->h = selmon->mh / 2;
+    }
 	attach(c);
 	attachstack(c);
 	XChangeProperty(dpy, root, netatom[NetClientList], XA_WINDOW, 32, PropModeAppend,

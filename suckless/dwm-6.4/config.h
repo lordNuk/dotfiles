@@ -1,25 +1,29 @@
 /* See LICENSE file for copyright and license details. */
 
-// constants
+#include <X11/XF86keysym.h>
 
+// constants
 #define TERMINAL "kitty"
+#define TERMCLASS "kitty"
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#23ff18";
-static const char col_gray4[]       = "#007700";
-static const char col_cyan[]        = "#083905";
+static const char *fonts[]          = { "Fira Code:size=10" };
+static const char dmenufont[]       = "Fira Code:size=10";
+static const char norm_fg[] = "#a89984";
+static const char norm_bg[] = "#282828";
+static const char norm_border[] = "#928374";
+static const char sel_fg[] = "#d65d0e";
+static const char sel_bg[] = "#282828";
+static const char sel_border[] = "#a89984";
+
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+    /*               fg           bg         border                         */
+    [SchemeNorm] = { norm_fg,     norm_bg,   norm_border }, // unfocused wins
+    [SchemeSel]  = { sel_fg,      sel_bg,    sel_border },  // the focused win
 };
 
 /* tagging */
@@ -30,8 +34,9 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	/* class        instance        title       tags mask     isfloating   monitor */
+    { TERMCLASS,    NULL,           "wifi",       0,        1,           -1 },
+    { "Blueman-manager",  NULL,      NULL,       0,        1,           -1 },
 	// { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
@@ -45,7 +50,7 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
-	// { "[M]",      monocle },
+	{ "[M]",      monocle },
 };
 
 /* key definitions */
@@ -60,7 +65,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 
 static const Key keys[] = {
@@ -76,7 +81,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	// { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
@@ -90,7 +94,14 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_j,      spawn,          SHCMD("light -U 5%") },
 	{ MODKEY|ControlMask,           XK_l,      spawn,          SHCMD("slock") },
 	{ MODKEY|ControlMask,           XK_b,      spawn,          SHCMD("blueman-manager") },
-	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ TERMINAL, "nmtui-edit", NULL} } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ TERMINAL, "--title", "wifi", "nmtui-edit", NULL} } },
+	{ MODKEY,                       XK_minus,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% && /home/kn/.local/bin/statusbar/refbar") },
+    { MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && /home/kn/.local/bin/statusbar/refbar") },
+	{ 0,                 XF86XK_AudioRaiseVolume, spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && /home/kn/.local/bin/statusbar/refbar") },
+	{ 0,                 XF86XK_AudioLowerVolume, spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% && /home/kn/.local/bin/statusbar/refbar") },
+	{ 0,                 XF86XK_AudioMute,        spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle && /home/kn/.local/bin/statusbar/refbar") },
+	{ 0,                 XF86XK_MonBrightnessUp,  spawn,          SHCMD("light -A 10%") },
+	{ 0,                 XF86XK_MonBrightnessDown,spawn,          SHCMD("light -U 10%") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -102,11 +113,6 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
-
-// bindsym XF86MonBrightnessUp exec --no-startup-id light -A 2%; exec notify-send 'brightness up 2%'
-// bindsym XF86MonBrightnessDown exec --no-startup-id light -U 2%; exec notify-send 'brightness down 2%'
-// bindsym $super+Ctrl+k exec --no-startup-id light -A 2%; exec notify-send 'brightness up 2%'
-// bindsym $super+Ctrl+j exec --no-startup-id light -U 2%; exec notify-send 'brightness down 2%'
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */

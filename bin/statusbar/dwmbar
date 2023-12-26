@@ -1,0 +1,16 @@
+#!/bin/bash
+
+status() {
+    /home/kn/.local/bin/statusbar/sb-volume         echo "|"
+    /home/kn/.local/bin/statusbar/sb-internet       echo "|"
+    /home/kn/.local/bin/statusbar/sb-battery        echo "|"
+    /home/kn/.local/bin/statusbar/sb-clock
+}
+
+while :; do 
+    xsetroot -name "$(status | tr '\n' ' ')"
+    sleep 1m
+done
+
+
+
