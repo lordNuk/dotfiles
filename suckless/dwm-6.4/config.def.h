@@ -3,15 +3,14 @@
 #include <X11/XF86keysym.h>
 
 // constants
-#define TERMINAL "kitty"
-#define TERMCLASS "kitty"
+#define TERMINAL "st"
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Fira Code:size=10" };
+static const char *fonts[]          = { "Fira Code:size=14" };
 static const char dmenufont[]       = "Fira Code:size=10";
 static const char norm_fg[] = "#a89984";
 static const char norm_bg[] = "#282828";
@@ -35,7 +34,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class        instance        title       tags mask     isfloating   monitor */
-    { TERMCLASS,    NULL,           "wifi",       0,        1,           -1 },
+    { 0,         NULL,           "wifi",       0,        1,           -1 },
     { "Blueman-manager",  NULL,      NULL,       0,        1,           -1 },
 	// { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
@@ -66,7 +65,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[] = { TERMINAL, "./.local/bin/tmuxLauncher", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -94,7 +93,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_j,      spawn,          SHCMD("light -U 5%") },
 	{ MODKEY|ControlMask,           XK_l,      spawn,          SHCMD("slock") },
 	{ MODKEY|ControlMask,           XK_b,      spawn,          SHCMD("blueman-manager") },
-	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){ TERMINAL, "--title", "wifi", "nmtui-edit", NULL} } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){TERMINAL, "-T", "wifi", "nmtui", NULL} } },
 	{ MODKEY,                       XK_minus,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% && /home/kn/.local/bin/statusbar/refbar") },
     { MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && /home/kn/.local/bin/statusbar/refbar") },
 	{ 0,                 XF86XK_AudioRaiseVolume, spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && /home/kn/.local/bin/statusbar/refbar") },
@@ -102,6 +101,7 @@ static const Key keys[] = {
 	{ 0,                 XF86XK_AudioMute,        spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle && /home/kn/.local/bin/statusbar/refbar") },
 	{ 0,                 XF86XK_MonBrightnessUp,  spawn,          SHCMD("light -A 10%") },
 	{ 0,                 XF86XK_MonBrightnessDown,spawn,          SHCMD("light -U 10%") },
+	{ 0,                            XK_Print,  spawn,          SHCMD("flameshot gui") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
