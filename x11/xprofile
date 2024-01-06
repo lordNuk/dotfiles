@@ -2,12 +2,15 @@
 
 # This file runs when a DM logs you into a graphical session.
 # If you use startx/xinit like a Chad, this file will also be sourced.
+#
+
+export PATH=$HOME/dotfiles/scripts:$PATH
 
 ./dotfiles/scripts/setresolution.sh
 ./dotfiles/scripts/setscreen.sh
-./.local/bin/touchScroll
-./.local/bin/statusbar/dwmbar &
-xset dpms 180 &
+./dotfiles/scripts/touchScroll
+./dotfiles/scripts/statusbar/dwmbar &
+xset dpms 500 &
 xss-lock -- slock &
 xrandr --dpi 96		# Set DPI. User may want to use a larger number for larger screens.
 # setbg &			# set the background with the `setbg` script

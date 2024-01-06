@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+set -o vi
+
 ## Useful aliases
 
 # Useful aliases by me
@@ -55,5 +57,4 @@ alias rbt="sudo reboot"
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 
-set -o vi
 bind '"\C-f":"tmux-sessionizer\n"'

@@ -10,8 +10,8 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Fira Code:size=14" };
-static const char dmenufont[]       = "Fira Code:size=10";
+static const char *fonts[]          = { "Terminus:size=12" };
+static const char dmenufont[]       = "Terminus:size=10";
 static const char norm_fg[] = "#a89984";
 static const char norm_bg[] = "#282828";
 static const char norm_border[] = "#928374";
@@ -65,7 +65,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", norm_bg, "-nf", norm_fg, "-sb", sel_bg, "-sf", sel_fg, NULL };
-static const char *termcmd[] = { TERMINAL, "./.local/bin/tmuxLauncher", NULL };
+static const char *termcmd[] = { TERMINAL, "tmuxLauncher", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -94,11 +94,11 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_l,      spawn,          SHCMD("slock") },
 	{ MODKEY|ControlMask,           XK_b,      spawn,          SHCMD("blueman-manager") },
 	{ MODKEY,                       XK_w,      spawn,          {.v = (const char*[]){TERMINAL, "-T", "wifi", "nmtui", NULL} } },
-	{ MODKEY,                       XK_minus,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% && /home/kn/.local/bin/statusbar/refbar") },
-    { MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && /home/kn/.local/bin/statusbar/refbar") },
-	{ 0,                 XF86XK_AudioRaiseVolume, spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && /home/kn/.local/bin/statusbar/refbar") },
-	{ 0,                 XF86XK_AudioLowerVolume, spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% && /home/kn/.local/bin/statusbar/refbar") },
-	{ 0,                 XF86XK_AudioMute,        spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle && /home/kn/.local/bin/statusbar/refbar") },
+	{ MODKEY,                       XK_minus,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% && /home/kn/dotfiles/scripts/statusbar/refbar") },
+    { MODKEY|ShiftMask,             XK_minus,  spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && /home/kn/dotfiles/scripts/statusbar/refbar") },
+	{ 0,                 XF86XK_AudioRaiseVolume, spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% && /home/kn/dotfiles/scripts/statusbar/refbar") },
+	{ 0,                 XF86XK_AudioLowerVolume, spawn,          SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% && /home/kn/dotfiles/scripts/statusbar/refbar") },
+	{ 0,                 XF86XK_AudioMute,        spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle && /home/kn/dotfiles/scripts/statusbar/refbar") },
 	{ 0,                 XF86XK_MonBrightnessUp,  spawn,          SHCMD("light -A 10%") },
 	{ 0,                 XF86XK_MonBrightnessDown,spawn,          SHCMD("light -U 10%") },
 	{ 0,                            XK_Print,  spawn,          SHCMD("flameshot gui") },
