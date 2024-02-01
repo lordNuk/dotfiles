@@ -101,7 +101,7 @@ static const Key keys[] = {
 	{ 0,                 XF86XK_AudioMute,        spawn,          SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle && /home/kn/dotfiles/scripts/statusbar/refbar") },
 	{ 0,                 XF86XK_MonBrightnessUp,  spawn,          SHCMD("light -A 10%") },
 	{ 0,                 XF86XK_MonBrightnessDown,spawn,          SHCMD("light -U 10%") },
-	{ 0,                            XK_Print,  spawn,          SHCMD("flameshot gui") },
+	{ 0,                            XK_print,  spawn,          SHCMD("flameshot gui") },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
