@@ -1,4 +1,7 @@
 #!/bin/bash
 
-xinput set-prop "GXT7863:00 27C6:01E0 Touchpad" "libinput Tapping Enabled" 1
-xinput set-prop "GXT7863:00 27C6:01E0 Touchpad"  "libinput Natural Scrolling Enabled" 1
+# xinput set-prop "GXT7863:00 27C6:01E0 Touchpad" "libinput Tapping Enabled" 1
+# xinput set-prop "GXT7863:00 27C6:01E0 Touchpad"  "libinput Natural Scrolling Enabled" 1
+
+xinput set-prop "ELAN0709:00 04F3:30A0 Touchpad" "libinput Tapping Enabled" 1
+xinput set-prop "ELAN0709:00 04F3:30A0 Touchpad"  "libinput Natural Scrolling Enabled" 1

@@ -5,11 +5,6 @@ set -o vi
 
 ## Useful aliases
 
-# Useful aliases by me
-alias shtdn='shutdown now'
-alias uu='sudo pacman -Syu'
-alias air='~/go/bin/./air'
-
 # Replace ls with exa
 alias ls='ls' # preferred listing
 alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
@@ -40,19 +35,19 @@ alias gitpkg='pacman -Q | grep -i "\-git" | wc -l' # List amount of -git package
 alias ip='ip -color'
 
 # Get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+# alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+# alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+# alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+# alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 # Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+# alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 # Get the error messages from journalctl
-alias jctl="journalctl -p 3 -xb"
+# alias jctl="journalctl -p 3 -xb"
 
-alias shtdn="sudo shutdown now"
-alias rbt="sudo reboot"
+# alias shtdn="sudo shutdown now"
+# alias rbt="sudo reboot"
 
 # Recent installed packages
 alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"

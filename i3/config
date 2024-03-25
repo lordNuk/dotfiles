@@ -51,14 +51,14 @@ bindsym $super+Return exec $preferredTerminalEmulator
 bindsym $super+w exec blueman-manager
 
 # set font
-font pango:Hack Nerd Font 10
+font pango:Terminess Nerd Font 12
 
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
 #autostart
 exec --no-startup-id feh --no-fehbg --bg-fill ~/Pictures/wallpapers/myWall2.jpg &
-exec --no-startup-id ~/dotfiles/scripts/setresolution.sh &
+# exec --no-startup-id ~/dotfiles/scripts/setresolution.sh &
 exec --no-startup-id xsettingsd &
 #exec --no-startup-id pasystray
 # exec --no-startup-id conky
@@ -78,12 +78,13 @@ exec_always --no-startup-id numlockx on
 # exec blueberry-tray
 # exec --no-startup-id java -Xmx1024m -jar "/opt/xdman/xdman.jar" -m
 # exec --no-startup-id ~/.local/bin/fastfetch-garuda
+exec --no-startup-id touchScroll
 
 # hide/unhide i3status bar
 bindsym $super+b bar mode toggle
 
 # start dmenu (a program launcher)
-bindsym $super+d exec --no-startup-id "dmenu_run -i -b -fn 'JetBrains Mono:style=Bold:size=12' -nb '#222D31' -nf '#F9FAF9' -sf '#F9FAF9' -sb '#16A085'"
+bindsym $super+d exec --no-startup-id "dmenu_run -i -b -fn 'Terminess Nerd Font Mono:style=Regualr:size=16' -nb '#222D31' -nf '#F9FAF9' -sf '#F9FAF9' -sb '#16A085'"
 
 # screen resolution
 bindsym $super+x exec --no-startup-id ~/dotfiles/scripts/setscreen.sh
